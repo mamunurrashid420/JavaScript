@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>JavaScript Form Validation </title>
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+            <!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+            <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+    </head>
+    <body>
+        <span><h2 class="text-success text-center">Registration </h2></span>
+       <div class="container">
+           <div class="col-lg-8 m-auto d-block">
+                
+        <form action="#" onsubmit="return validation()" class=" bg-light" >
+            <div class="form-group">
+              <label for="Fname">Full Name</label>
+                <input type="text" name="Fname" placeholder="First Name...." class="form-control"id="Fname" onblur="test()" autocomplete="off">
+                <img src="tick.png" style="height:20px; width:20px;" id="tick">
+				<span id="fullname" class="text-danger font-weight-bold"> </span>
+            </div>
+           <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" name="Lname" placeholder="Last Name....." class="form-control" id="Lname"  autocomplete="off"/>
+				   <span id="Lastname" class="text-danger font-weight-bold"> </span>
+
+		   </div>
+            <div class="form-group">
+                <label>Phone no</label>
+                <input type="text" name="phone " placeholder="Phone Number" class="form-control" id="phone"  autocomplete="off"/>
+                <span id="phoneno" class="text-danger font-weight-bold"> </span>
+
+			</div>
+            <div class="form-group">
+                <label>EmailId</label>
+                <input type="email" name="emailid" placeholder="Email...." class="form-control" id="emailid"  autocomplete="off"/>
+            </div>
+            <div class="form-group">
+				<p id="demo"></p>
+                <label>Password</label>
+                <input type="text" name="password" class="form-control" id="password"  autocomplete="off" 
+				pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must
+				contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  />
+				<span id="pass" class="text-danger font-weight-bold"></span>
+            </div>
+			<div class="form-group">
+                <label>Confirm Password</label>
+                <input type="text" name="conpass" class="form-control" id="conpass"  autocomplete="off" />
+				<span id="confirpass" class="text-danger font-weight-bold"></span>
+            </div>
+                        <input type="submit" name="submit" value="submit" class="btn btn-success"/>
+        </form>
+           </div>
+        </div>
+        
+        
+        <!----validation in javaScript--->
+        
+       <script type="text/javascript">
+           function validation(){
+               
+				var Fname = document.getElementById('Fname').value;
+				var Lname= document.getElementById('Lname').value;
+				var phone=document.getElementById('phone').value;
+				var emailid= document.getElementById('emailid').value;
+				var password = document.getElementById('password').value;
+				var confpass = document.getElementById('conpass').value;
+				
+				   
+				if(Fname == ""){
+				alert("please enter your  First Name");
+					document.getElementById('fullname').innerHTML =" ** Please fill the First Name field";
+					
+                    return false;
+				}
+				// this function check character or number 
+				if(!isNaN(Fname)){
+				document.getElementById('fullname').innerHTML =" ** only characters are allowed";
+				return false;
+				}
+				
+				
+				
+				
+				if(Lname == ""){
+					document.getElementById('Lastname').innerHTML =" ** Please fill the Last Name field";
+					alert("please enter your Last name");
+					return false;
+				}
+				if(!isNaN(Lname)){
+				document.getElementById('Lastname').innerHTML =" ** only characters are allowed";
+				return false;
+				}
+			
+			
+				
+				if(phone == ""){
+					document.getElementById('phoneno').innerHTML =" ** Please fill the phone field";
+					alert("please enter your valid phone number ");
+					return false;
+				}
+				
+				
+				if(isNaN(phone)){
+				document.getElementById('phoneno').innerHTML =" ** only digits  are allowed";
+				return false;
+				}
+				if(phone.length !=11){
+				document.getElementById('phoneno').innerHTML="** please input your 11 digits phone number";
+				return false;
+				}
+			
+				if(emailid == ""){
+					document.getElementById('emailid').innerHTML =" ** Please fill the email field";
+					alert("please enter your valid email  ");
+					return false;
+				}
+				if(password == ""){
+					document.getElementById('pass').innerHTML =" ** Please fill the password field";
+					alert("please enter your password  ");
+					return false;
+				}
+				
+				/*if((password.length <= 8) || (password.length > 20))
+				{
+				document.getElementById('pass').innerHTML =" ** Passwords lenght must be between  8 and 20";
+				return false;	
+				}*/
+				/*if(password.length<8){
+				document.getElementById("demo").innerHTML="password length Must Be 8 char";
+				document.getElementById("demo").style.color="Red";
+				return ("too_short");
+				}
+				/*else if(password.search(/[0-9]/)==-1){
+						document.getElementById("demo").innerHTML="Atleast 1 number";
+						document.getElementById("demo").style.color="Red";
+						return("no_number");
+					
+				}
+				else if(password.search(/[a-z]/)==-1){
+					document.getElementById("demo").innerHTML="Atleast 1 smaill letter";
+					document.getElementById("demo").style.color="Red";
+					return("no_letter");
+					}
+					else if(password.search(/[A-Z]/)==-1){
+					document.getElementById("demo").innerHTML="Atleast 1 smaill letter";
+					document.getElementById("demo").style.color="Red";
+					return("no_Uletter");
+					}
+					else if(password.search(/[!\!\@\#\$\%\^\&\*\-\+\.\,\'\;\"\:]/)==-1){
+					document.getElementById("demo").innerHTML="Atleast 1 smaill letter";
+					document.getElementById("demo").style.color="Red";
+					return("no_Uletter");
+					}
+					/*document.getElementById("demo").innerHTML="seccessfull";
+					document.getElementById("demo").style.color="Green";
+					return("ok");*/
+			
+				
+
+				if(confpass == ""){
+					document.getElementById('confirpass').innerHTML =" ** Please fill the password field";
+					alert("please enter your confirm password  ");
+					return false;
+				}
+				
+				//password matching
+				if(password !=confpass){
+					document.getElementById("confirpass").innerHTML = " ** dose not Matching ";
+					return false;
+				}
+				/*var conpass= /^[A-Za-z]\w{7,15}$/;
+				if(!conpass.match(conpass))
+				{
+					alert(" conform password ......");
+					return false;
+				
+				}
+				
+				/*if(!conpass.value=password.value)
+				 {
+					alert("Password Not Matching");
+					return false;
+				 }	
+     	 */
+				 
+           }
+		   function test(){
+		var imge = document.getElementById('tick');
+		imge.src = "tick.png";
+		imge.style.width = "17px";
+		imge.style.height = "17px";
+		
+	}
+           
+        </script>
+        
+        
+        
+        
+    </body>
+</html>
